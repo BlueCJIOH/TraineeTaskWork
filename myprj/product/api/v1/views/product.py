@@ -25,9 +25,9 @@ class ProductViewSet(viewsets.ModelViewSet):
         """
         instance = self.get_object()
         if not (
-                Product.objects.prefetch_related("members")
-                        .filter(members__id=request.user.id, pk=pk)
-                        .exists()
+            Product.objects.prefetch_related("members")
+            .filter(members__id=request.user.id, pk=pk)
+            .exists()
         ):
             group_cnt = instance.groups.count()
             member_sup = instance.max_members * group_cnt
